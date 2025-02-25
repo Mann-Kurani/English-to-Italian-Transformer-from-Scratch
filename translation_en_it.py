@@ -31,7 +31,7 @@ from tokenizers.models import WordLevel
 from tokenizers.trainers import WordLevelTrainer
 from tokenizers.pre_tokenizers import Whitespace
 
-import torchmetrics
+# import torchmetrics
 from torch.utils.tensorboard import SummaryWriter
 
 def get_all_sentences(ds, lang):
@@ -242,25 +242,25 @@ def run_validation(model, validation_ds, tokenizer_src, tokenizer_tgt, max_len, 
         # print_msg('-'*console_width)
         break
 
-  if writer:
-    # Evaluate the character error rate
-    # Compute the char error rate 
-    metric = torchmetrics.text.CharErrorRate()
-    cer = metric(predicted, expected)
-    writer.add_scalar('validation cer', cer, global_step)
-    writer.flush()
+  # if writer:
+  #   # Evaluate the character error rate
+  #   # Compute the char error rate 
+  #   metric = torchmetrics.text.CharErrorRate()
+  #   cer = metric(predicted, expected)
+  #   writer.add_scalar('validation cer', cer, global_step)
+  #   writer.flush()
 
-    # Compute the word error rate
-    metric = torchmetrics.text.WordErrorRate()
-    wer = metric(predicted, expected)
-    writer.add_scalar('validation wer', wer, global_step)
-    writer.flush()
+  #   # Compute the word error rate
+  #   metric = torchmetrics.text.WordErrorRate()
+  #   wer = metric(predicted, expected)
+  #   writer.add_scalar('validation wer', wer, global_step)
+  #   writer.flush()
 
-    # Compute the BLEU metric
-    metric = torchmetrics.text.BLEUScore()
-    bleu = metric(predicted, expected)
-    writer.add_scalar('validation BLEU', bleu, global_step)
-    writer.flush()
+  #   # Compute the BLEU metric
+  #   metric = torchmetrics.text.BLEUScore()
+  #   bleu = metric(predicted, expected)
+  #   writer.add_scalar('validation BLEU', bleu, global_step)
+  #   writer.flush()
 
 
 if __name__ == '__main__':
